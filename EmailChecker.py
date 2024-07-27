@@ -19,9 +19,6 @@ def email():
      global line_bool
      global line_index
 
-     if line_index == num_lines:
-      break
-
      if line_bool == True:
        line_index = line_index
      else:
@@ -54,6 +51,9 @@ def email():
      sscc = 0
 
      delay = 0.4
+
+     if line_index == num_lines:
+      break
       
      pyperclip.copy(lines[line_index].strip())
      print(f"Copied line {line_index+1}: {lines[line_index].strip()}")
