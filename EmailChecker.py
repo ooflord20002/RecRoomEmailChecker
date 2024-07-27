@@ -131,7 +131,7 @@ def email():
 
         string = (email) + "\n"
 
-        with open("SucessfulPulls.txt", "a") as f:
+        with open("AlreadyInUse.txt", "a") as f:
           f.write(string)
 
         reference_image1 = cv2.imread('template/BACK.png', cv2.IMREAD_COLOR)
