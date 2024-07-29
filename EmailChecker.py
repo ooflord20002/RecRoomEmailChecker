@@ -58,76 +58,80 @@ def email():
      pyperclip.copy(lines[line_index].strip())
      print(f"Copied line {line_index+1}: {lines[line_index].strip()}")
 
-     reference_image1 = cv2.imread('template/SET.png', cv2.IMREAD_COLOR)
+     if '_' in lines[line_index].strip():
+        line_index = (line_index + 1) % len(lines)
+     else:
 
-     screenshot1 = pyautogui.screenshot()
-     screenshot1 = cv2.cvtColor(np.array(screenshot1), cv2.COLOR_RGB2BGR)
+      reference_image1 = cv2.imread('template/SET.png', cv2.IMREAD_COLOR)
 
-     result1 = cv2.matchTemplate(screenshot1, reference_image1, cv2.TM_CCOEFF_NORMED)
+      screenshot1 = pyautogui.screenshot()
+      screenshot1 = cv2.cvtColor(np.array(screenshot1), cv2.COLOR_RGB2BGR)
 
-     min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(result1)
+      result1 = cv2.matchTemplate(screenshot1, reference_image1, cv2.TM_CCOEFF_NORMED)
 
-     if max_val1 > threshold:
+      min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(result1)
+
+      if max_val1 > threshold:
         pyautogui.moveTo(max_loc1[0] + reference_image1.shape[1] / 2, max_loc1[1] + reference_image1.shape[0] / 2)
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     email = (lines[line_index].strip())
+      email = (lines[line_index].strip())
 
-     pyautogui.click()
+      pyautogui.click()
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     reference_image1 = cv2.imread('template/ENTER.png', cv2.IMREAD_COLOR)
+      reference_image1 = cv2.imread('template/ENTER.png', cv2.IMREAD_COLOR)
 
-     screenshot1 = pyautogui.screenshot()
-     screenshot1 = cv2.cvtColor(np.array(screenshot1), cv2.COLOR_RGB2BGR)
+      screenshot1 = pyautogui.screenshot()
+      screenshot1 = cv2.cvtColor(np.array(screenshot1), cv2.COLOR_RGB2BGR)
 
-     result1 = cv2.matchTemplate(screenshot1, reference_image1, cv2.TM_CCOEFF_NORMED)
+      result1 = cv2.matchTemplate(screenshot1, reference_image1, cv2.TM_CCOEFF_NORMED)
 
-     min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(result1)
+      min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(result1)
 
-     if max_val1 > threshold:
+      if max_val1 > threshold:
         pyautogui.moveTo(max_loc1[0] + reference_image1.shape[1] / 2, max_loc1[1] + reference_image1.shape[0] / 2)
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     pyautogui.click()
+      pyautogui.click()
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     pyautogui.hotkey('ctrl', 'v')
+      pyautogui.hotkey('ctrl', 'v')
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     reference_image1 = cv2.imread('template/SUBMIT.png', cv2.IMREAD_COLOR)
+      reference_image1 = cv2.imread('template/SUBMIT.png', cv2.IMREAD_COLOR)
 
-     screenshot1 = pyautogui.screenshot()
-     screenshot1 = cv2.cvtColor(np.array(screenshot1), cv2.COLOR_RGB2BGR)
+      screenshot1 = pyautogui.screenshot()
+      screenshot1 = cv2.cvtColor(np.array(screenshot1), cv2.COLOR_RGB2BGR)
 
-     result1 = cv2.matchTemplate(screenshot1, reference_image1, cv2.TM_CCOEFF_NORMED)
+      result1 = cv2.matchTemplate(screenshot1, reference_image1, cv2.TM_CCOEFF_NORMED)
 
-     min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(result1)
+      min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(result1)
 
-     if max_val1 > threshold:
-        pyautogui.moveTo(max_loc1[0] + reference_image1.shape[1] / 2, max_loc1[1] + reference_image1.shape[0] / 2)
+      if max_val1 > threshold:
+         pyautogui.moveTo(max_loc1[0] + reference_image1.shape[1] / 2, max_loc1[1] + reference_image1.shape[0] / 2)
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     pyautogui.click()
+      pyautogui.click()
 
-     time.sleep(delay)
+      time.sleep(delay)
 
-     ref_image = cv2.imread('template/USE.png')
+      ref_image = cv2.imread('template/USE.png')
 
-     screenshot = pyautogui.screenshot()
+      screenshot = pyautogui.screenshot()
 
-     img_cv = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+      img_cv = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
 
-     result = cv2.matchTemplate(img_cv, ref_image, cv2.TM_CCOEFF_NORMED)
-     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+      result = cv2.matchTemplate(img_cv, ref_image, cv2.TM_CCOEFF_NORMED)
+      min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
 
-     if max_val > 0.8:
+      if max_val > 0.8:
 
         string = (email) + "\n"
 
@@ -149,7 +153,7 @@ def email():
            time.sleep(delay)
 
            line_index = (line_index + 1) % len(lines)
-     else:
+      else:
         reference_image1 = cv2.imread('template/DONE.png', cv2.IMREAD_COLOR)
 
         screenshot1 = pyautogui.screenshot()
